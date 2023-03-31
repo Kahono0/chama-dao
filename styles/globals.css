@@ -10,7 +10,7 @@
   --background-end-rgb: black;
   --dark-bg: #b1aeae1f;
   --light-bg: rgb(255, 255, 255);
-  --pinky: rgb(240, 12, 80);
+  --pinky: #f00c50;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,

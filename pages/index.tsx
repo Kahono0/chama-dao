@@ -1,12 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Link from 'next/link';
-import Logo from './components/logo';
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Link from "next/link";
+import Logo from "./components/logo";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -20,17 +20,20 @@ export default function Home() {
       <main className={styles.main}>
         <Logo />
         <div className={`${styles.welcome} ${inter.className}`}>
-          <h1 className={styles.title}>
-            Welcome to Chama DAO
-          </h1>
+          <h1 className={styles.title}>Welcome to Chama DAO</h1>
           <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. In eos dicta nemo, nam sequi accusantium voluptatum eum quis consectetur beatae dolorum quas. Harum recusandae eos nobis hic ullam eligendi labore?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. In eos
+            dicta nemo, nam sequi accusantium voluptatum eum quis consectetur
+            beatae dolorum quas. Harum recusandae eos nobis hic ullam eligendi
+            labore?
           </p>
           <Link href="/signup">
-          <div className={styles.button}>Get Started <ArrowForwardIcon/> </div>
+            <div className={styles.button}>
+              Get Started <ArrowForwardIcon />{" "}
+            </div>
           </Link>
         </div>
       </main>
     </>
-  )
+  );
 }
