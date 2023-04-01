@@ -4,7 +4,7 @@ import homeStyles from "@/styles/Home.module.css";
 import Head from "next/head";
 import Logo from "./components/logo";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,41 +14,49 @@ export default function SignUp() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if ((window as any).ethereum) {
-        const data : any = window.localStorage.getItem('user')
-        console.log(data)
-        if(data){
+    if (typeof window !== "undefined") {
+      if ((window as any).ethereum) {
+        if(window.localStorage.getItem('user') && window.localStorage.getItem('address')){
             window.location.assign('/landing')
+            return
         }
-
-      setEthereum((window as any).ethereum);
-    } else {
-      setError(true);
+        setEthereum((window as any).ethereum);
+      } else {
+        setError(true);
+      }
     }
   }, []);
 
   const connectWallet = async () => {
+    if (ethereum == null) {
+      return;
+    }
+
     try {
       const accounts = await (ethereum as any).request({
         method: "eth_requestAccounts",
       });
-      const account = accounts[0];
-      setAccount(account);
-      console.log(account);
+      setAccount(accounts[0]);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleInput = (e) => {
+  const handleInput = (e :React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = {
-        username: e.target.username.value,
-        address: account
+
+
+    if ( account == null ) {
+      return;
     }
-    console.log(data)
-    //post data to backend
-    window.localStorage.setItem('user', JSON.stringify(data))
+
+    if ( !e.currentTarget.username.value ) {
+      return;
+    }
+    
+    window.localStorage.setItem('user', e.currentTarget.username.value)
+    window.localStorage.setItem('address', account)
+
 
     window.location.assign('/landing')
     };
