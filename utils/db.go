@@ -18,6 +18,12 @@ const (
 
 var DB *gorm.DB
 
+func GetUserByAddress(address string) (models.User, error) {
+	var user models.User
+	result := DB.First(&user, "address = ?", address)
+	return user, result.Error
+}
+
 func ConnectDB() {
 	dbStr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai", host, user, password, dbname, port)
 	db, err := gorm.Open(postgres.Open(dbStr), &gorm.Config{})

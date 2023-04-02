@@ -3,6 +3,8 @@ module github.com/Kahono0/chama-dao
 go 1.19
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gorilla/mux v1.8.0
 	gorm.io/driver/postgres v1.5.0
 	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
