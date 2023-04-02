@@ -5,14 +5,14 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	""
+	"github.com/Kahono0/chama-dao/models"
 )
 
 const (
 	host     = "localhost"
 	port     = 5432
-	user    = "postgres"
-	password = "postgres"
+	user    = "root"
+	password = "root"
 	dbname   = "chama"
 )
 
@@ -25,5 +25,10 @@ func ConnectDB() {
 		panic(err)
 	}
 	DB = db
+	db.AutoMigrate(&models.Transaction{})
+	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Proposal{})
+	db.AutoMigrate(&models.Organization{})
+
 }
 
